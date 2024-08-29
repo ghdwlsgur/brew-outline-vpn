@@ -5,20 +5,20 @@
 class OutlineVpn < Formula
   desc "outline-vpn helps you easily and quickly provision EC2 with terraform and consume vpn service on your mobile or computer via outline application."
   homepage "https://github.com/ghdwlsgur/outline-vpn"
-  version "1.0.26"
+  version "1.1.0"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/ghdwlsgur/outline-vpn/releases/download/v1.0.26/outline-vpn_1.0.26_Darwin_arm64.tar.gz"
-      sha256 "0312f829bae172c9eef0d9e16d4d8ad0c9f84c19e58bdd50fc6ed51e7fa3cb27"
+    on_intel do
+      url "https://github.com/ghdwlsgur/outline-vpn/releases/download/v1.1.0/outline-vpn_1.1.0_Darwin_x86_64.tar.gz"
+      sha256 "2b0e34a211e9fd66f2a9ec06779e404a087761cdffd2d59c7a807d47136dd5e2"
 
       def install
         bin.install "outline-vpn"
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/ghdwlsgur/outline-vpn/releases/download/v1.0.26/outline-vpn_1.0.26_Darwin_x86_64.tar.gz"
-      sha256 "889b6436c20ae0979c5df4596ae81212446983c50a9882f0fa54cd4bc273b27d"
+    on_arm do
+      url "https://github.com/ghdwlsgur/outline-vpn/releases/download/v1.1.0/outline-vpn_1.1.0_Darwin_arm64.tar.gz"
+      sha256 "bd9c941d9676d79c6f196a4c4a0f3aafdff5a12969af97f2e1768aa50b97c484"
 
       def install
         bin.install "outline-vpn"
@@ -27,20 +27,24 @@ class OutlineVpn < Formula
   end
 
   on_linux do
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/ghdwlsgur/outline-vpn/releases/download/v1.0.26/outline-vpn_1.0.26_Linux_arm64.tar.gz"
-      sha256 "cac5a2da3f068ec3334f5812691bcda8bb9f1d97ec162e25760d2e7827acf0b2"
+    on_intel do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/ghdwlsgur/outline-vpn/releases/download/v1.1.0/outline-vpn_1.1.0_Linux_x86_64.tar.gz"
+        sha256 "ff61d371230ed05da7f9149e6bc0f69d01b46e9e88d3445a3f0b9fa2ee2e6546"
 
-      def install
-        bin.install "outline-vpn"
+        def install
+          bin.install "outline-vpn"
+        end
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/ghdwlsgur/outline-vpn/releases/download/v1.0.26/outline-vpn_1.0.26_Linux_x86_64.tar.gz"
-      sha256 "6d050ecd57cb136e9eca13382428fd7938a80f8a49a1e594e91608beb1092e79"
+    on_arm do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/ghdwlsgur/outline-vpn/releases/download/v1.1.0/outline-vpn_1.1.0_Linux_arm64.tar.gz"
+        sha256 "862ffd2e07c0b72c300179296f8b2a8cbda92e9e20dd18b7d52f4eb3f58bbc06"
 
-      def install
-        bin.install "outline-vpn"
+        def install
+          bin.install "outline-vpn"
+        end
       end
     end
   end
